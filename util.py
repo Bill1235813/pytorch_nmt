@@ -4,7 +4,7 @@ import numpy as np
 
 def read_corpus(file_path, source, generate=False):
   data = []
-  for line in open(file_path):
+  for line in open(file_path, newline='\n'):
     sent = line.strip().split(' ')
     # only append <s> and </s> to the target sentence
     if source == 'tgt' and not generate:
