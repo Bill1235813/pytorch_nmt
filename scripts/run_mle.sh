@@ -1,30 +1,31 @@
 #!/bin/bash
 
-train_src="data/train_news-commentary-v11.de-en.en"
-train_tgt="data/train_news-commentary-v11.de-en.de"
-dev_src="data/eval_news-commentary-v11.de-en.en"
-dev_tgt="data/eval_news-commentary-v11.de-en.de"
-test_src="data/test_news-commentary-v11.de-en.en"
-test_tgt="data/test_news-commentary-v11.de-en.de"
+#train_src="data/train_news-commentary-v11.de-en.en"
+#train_tgt="data/train_news-commentary-v11.de-en.de"
+#dev_src="data/eval_news-commentary-v11.de-en.en"
+#dev_tgt="data/eval_news-commentary-v11.de-en.de"
+#test_src="data/test_news-commentary-v11.de-en.en"
+#test_tgt="data/test_news-commentary-v11.de-en.de"
 
-#train_src="data/train_news-commentary-v11.de-en.de"
-#train_tgt="data/train_news-commentary-v11.de-en.en"
-#dev_src="data/eval_news-commentary-v11.de-en.de"
-#dev_tgt="data/eval_news-commentary-v11.de-en.en"
-#test_src="data/test_news-commentary-v11.de-en.de"
-#test_tgt="data/test_news-commentary-v11.de-en.en"
+train_src="data/train_news-commentary-v11.de-en.de"
+train_tgt="data/train_news-commentary-v11.de-en.en"
+dev_src="data/eval_news-commentary-v11.de-en.de"
+dev_tgt="data/eval_news-commentary-v11.de-en.en"
+test_src="data/test_news-commentary-v11.de-en.de"
+test_tgt="data/test_news-commentary-v11.de-en.en"
 
-job_name="news.en-de.test"
-#job_name="news.de-en.test"
+#job_name="news.en-de.test"
+job_name="news.de-en.test"
 train_log="train."${job_name}".log"
 model_name="model."${job_name}
 job_file="scripts/train."${job_name}".sh"
 decode_file=${job_name}".test"
 
 #    --vocab data/news_vocab.de-en.bin \
+#    --vocab data/news_vocab.en-de.bin \
 python nmt.py \
     --mode train \
-    --vocab data/news_vocab.en-de.bin \
+    --vocab data/news_vocab.de-en.bin \
     --save_to models/${model_name} \
     --valid_niter 2400 \
     --valid_metric ppl \
