@@ -25,16 +25,16 @@ if __name__ == "__main__":
                       help='file of source sentences')
   parser.add_argument('--train_tgt', type=str, default='data/news-commentary-v11.de-en.de',
                       help='file of target sentences')
-  parser.add_argument('--src_vocab_size', default=20000, type=int, help='source vocabulary size')
-  parser.add_argument('--tgt_vocab_size', default=20000, type=int, help='target vocabulary size')
+  parser.add_argument('--src_size', default=20000, type=int, help='source vocabulary size')
+  parser.add_argument('--tgt_size', default=20000, type=int, help='target vocabulary size')
   
   args = parser.parse_args()
   
   print('read in source sentences: %s' % args.train_src)
   print('read in target sentences: %s' % args.train_tgt)
   
-  src_sents = read_corpus(args.train_src, source='src', generate=True)[:args.src_vocab_size]
-  tgt_sents = read_corpus(args.train_tgt, source='tgt', generate=True)[:args.tgt_vocab_size]
+  src_sents = read_corpus(args.train_src, source='src', generate=True)[:args.src_size]
+  tgt_sents = read_corpus(args.train_tgt, source='tgt', generate=True)[:args.tgt_size]
   
   assert len(src_sents) == len(tgt_sents)
   make_data(src_sents, tgt_sents, args.train_src.split("/")[-1], args.train_tgt.split("/")[-1])

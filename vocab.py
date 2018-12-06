@@ -82,6 +82,8 @@ if __name__ == '__main__':
   parser = argparse.ArgumentParser()
   parser.add_argument('--src_vocab_size', default=50000, type=int, help='source vocabulary size')
   parser.add_argument('--tgt_vocab_size', default=50000, type=int, help='target vocabulary size')
+  parser.add_argument('--src_size', default=20000, type=int, help='source size')
+  parser.add_argument('--tgt_size', default=20000, type=int, help='target size')
   parser.add_argument('--include_singleton', action='store_true', default=False, help='whether to include singleton'
                                                                                       'in the vocabulary (default=False)')
   
@@ -95,12 +97,12 @@ if __name__ == '__main__':
   print('read in source sentences: %s' % args.train_src)
   print('read in target sentences: %s' % args.train_tgt)
   
-  src_sents = read_corpus(args.train_src, source='src')
-  tgt_sents = read_corpus(args.train_tgt, source='tgt')
+  src_sents = read_corpus(args.train_src, source='src')[:args.src_size]
+  tgt_sents = read_corpus(args.train_tgt, source='tgt')[:args.tgt_size]
   
   if len(src_sents) != len(tgt_sents):
-    src_sents = src_sents[:min(len(src_sents), len(tgt_sents))]
-    tgt_sents = tgt_sents[:min(len(src_sents), len(tgt_sents))]
+    src_sents = src_sents[: min(len(src_sents), len(tgt_sents))]
+    tgt_sents = tgt_sents[: min(len(src_sents), len(tgt_sents))]
   vocab = Vocab(src_sents, tgt_sents, args.src_vocab_size, args.tgt_vocab_size,
                 remove_singleton=not args.include_singleton)
   print('generated vocabulary, source %d words, target %d words' % (len(vocab.src), len(vocab.tgt)))
