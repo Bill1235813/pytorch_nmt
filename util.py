@@ -17,16 +17,13 @@ def read_corpus(file_path, source, generate=False):
 def write_corpus(file_path, source):
   with open(file_path, 'w') as fout:
     for s in source:
-      for word_idx in range(len(s)):
-        fout.write(s[word_idx])
-        if word_idx != len(s) - 1:
-          fout.write(' ')
+      fout.write(' '.join(s))
       fout.write('\n')
 
 
 def batch_slice(data, batch_size, sort=True):
   batch_num = int(np.ceil(len(data) / float(batch_size)))
-  for i in xrange(batch_num):
+  for i in range(batch_num):
     cur_batch_size = batch_size if i < batch_num - 1 else len(data) - batch_size * i
     src_sents = [data[i * batch_size + b][0] for b in range(cur_batch_size)]
     tgt_sents = [data[i * batch_size + b][1] for b in range(cur_batch_size)]

@@ -5,7 +5,7 @@ train_tgt="data/train_news-commentary-v11.de-en.de"
 
 python process_samples.py \
     --mode sample_ngram \
-    --vocab data/iwslt.vocab.bin \
+    --vocab data/news_vocab_de_en.bin \
     --src ${train_src} \
     --tgt ${train_tgt} \
-    --output /tmp/samples.txt
+    --output tmp/samples.de-en.txt

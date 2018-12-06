@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 train_src="data/train_news-commentary-v11.de-en.en"
 train_tgt="data/train_news-commentary-v11.de-en.de"
@@ -7,17 +7,26 @@ dev_tgt="data/eval_news-commentary-v11.de-en.de"
 test_src="data/test_news-commentary-v11.de-en.en"
 test_tgt="data/test_news-commentary-v11.de-en.de"
 
-job_name="iwslt14.ml.512enc.test"
+#train_src="data/train_news-commentary-v11.de-en.de"
+#train_tgt="data/train_news-commentary-v11.de-en.en"
+#dev_src="data/eval_news-commentary-v11.de-en.de"
+#dev_tgt="data/eval_news-commentary-v11.de-en.en"
+#test_src="data/test_news-commentary-v11.de-en.de"
+#test_tgt="data/test_news-commentary-v11.de-en.en"
+
+job_name="news.en-de.test"
+#job_name="news.de-en.test"
 train_log="train."${job_name}".log"
 model_name="model."${job_name}
 job_file="scripts/train."${job_name}".sh"
-decode_file=${job_name}".test.en"
+decode_file=${job_name}".test"
 
+#    --vocab data/news_vocab.de-en.bin \
 python nmt.py \
     --mode train \
-    --vocab data/iwslt.vocab.bin \
+    --vocab data/news_vocab.en-de.bin \
     --save_to models/${model_name} \
-    --valid_niter 2400 \
+    --valid_niter 50 \
     --valid_metric ppl \
     --beam_size 5 \
     --batch_size 64 \
@@ -41,5 +50,5 @@ python nmt.py \
     --test_src ${test_src} \
     --test_tgt ${test_tgt}
 
-echo "test result" >> logs/${train_log}
-perl multi-bleu.perl ${test_tgt} < decode/${decode_file} >> logs/${train_log}
+ echo "test result" >> logs/${train_log}
+ perl multi-bleu.perl ${test_tgt} < decode/${decode_file} >> logs/${train_log}

@@ -19,7 +19,7 @@ for temp in [0.6, 0.8]:  # 0.75, 0.80, 0.85, 0.90, 0.95, 1.0
 python nmt.py \
     --cuda \
     --mode raml_train \
-    --vocab iwslt.vocab.bin \
+    --vocab iwslt.news_vocab.de-en.bin \
     --save_to models/{model_name} \
     --valid_niter 15400 \
     --valid_metric ppl \
