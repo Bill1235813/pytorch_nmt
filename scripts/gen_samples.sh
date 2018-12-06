@@ -1,7 +1,7 @@
 #!/bin/sh
 
-train_src="data/train.de-en.de.wmixerprep"
-train_tgt="data/train.de-en.en.wmixerprep"
+train_src="data/train_news-commentary-v11.de-en.en"
+train_tgt="data/train_news-commentary-v11.de-en.de"
 
 python process_samples.py \
     --mode sample_ngram \

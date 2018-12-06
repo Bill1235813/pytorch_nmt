@@ -1,11 +1,11 @@
 #!/bin/sh
 
-train_src="data/train.de-en.de.wmixerprep"
-train_tgt="data/train.de-en.en.wmixerprep"
-dev_src="data/valid.de-en.de"
-dev_tgt="data/valid.de-en.en"
-test_src="data/test.de-en.de"
-test_tgt="data/test.de-en.en"
+train_src="data/train_news-commentary-v11.de-en.en"
+train_tgt="data/train_news-commentary-v11.de-en.de"
+dev_src="data/eval_news-commentary-v11.de-en.en"
+dev_tgt="data/eval_news-commentary-v11.de-en.de"
+test_src="data/test_news-commentary-v11.de-en.en"
+test_tgt="data/test_news-commentary-v11.de-en.de"
 
 job_name="iwslt14.ml.512enc.test"
 train_log="train."${job_name}".log"
