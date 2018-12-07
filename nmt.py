@@ -653,10 +653,10 @@ def train(args):
                         best_model_iter = train_iter
     
                         if valid_num > args.save_model_after:
+                            model_file = args.save_to + '.bin'
                             print('save currently the best model ..', file=sys.stderr)
-                            model_file_abs_path = os.path.abspath(model_file)
-                            symlin_file_abs_path = os.path.abspath(args.save_to + '.bin')
-                            os.system('ln -sf %s %s' % (model_file_abs_path, symlin_file_abs_path))
+                            model.save(model_file)
+            
                     else:
                         patience += 1
                         print('hit patience %d' % patience, file=sys.stderr)

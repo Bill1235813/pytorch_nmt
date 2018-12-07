@@ -40,16 +40,18 @@ python nmt.py \
     --train_src ${train_src} \
     --train_tgt ${train_tgt} \
     --dev_src ${dev_src} \
-    --dev_tgt ${dev_tgt}
+    --dev_tgt ${dev_tgt} \
+    --cuda
 
-python nmt.py \
-    --mode test \
-    --load_model models/${model_name}.bin \
-    --beam_size 5 \
-    --decode_max_time_step 100 \
-    --save_to_file decode/${decode_file} \
-    --test_src ${test_src} \
-    --test_tgt ${test_tgt}
-
- echo "test result" >> logs/${train_log}
- perl multi-bleu.perl ${test_tgt} < decode/${decode_file} >> logs/${train_log}
+#python nmt.py \
+#    --mode test \
+#    --load_model models/${model_name}.bin \
+#    --beam_size 5 \
+#    --decode_max_time_step 100 \
+#    --save_to_file decode/${decode_file} \
+#    --test_src ${test_src} \
+#    --test_tgt ${test_tgt} \
+#    --cuda
+#
+# echo "test result" >> logs/${train_log}
+# perl multi-bleu.perl ${test_tgt} < decode/${decode_file} >> logs/${train_log}
